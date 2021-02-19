@@ -1,3 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_call_tracking_manager,call.tracking.manager,model_call_tracking,sales_team.group_sale_manager,1,1,1,1
-access_call_tracking,call.tracking,model_call_tracking,sales_team.group_sale_salesman,1,1,1,0
