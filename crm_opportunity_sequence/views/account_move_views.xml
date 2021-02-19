@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+
+  <record id="account_move_form_inherit" model="ir.ui.view">
+    <field name="name">account.move.form.inherit</field>
+    <field name="model">account.move</field>
+    <field name="priority">2</field>
+    <field name="inherit_id" ref="account.view_move_form"/>
+    <field name="arch" type="xml">
+      <field name="partner_id" position="after">
+	<field name="opp_ref" />
+      </field>
+    </field>
+  </record>
+
+  <record id="view_account_invoice_filter_inherited" model="ir.ui.view">
+    <field name="name">account.invoice.search.inherited</field>
+    <field name="model">account.move</field>
+    <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+    <field name="arch" type="xml">
+      <field name="name" position="after">
+        <field name="opp_ref" string="Opportunity Reference"
+	       filter_domain="[('opp_ref','ilike', self)]" />
+      </field>
+    </field>
+  </record>
+
+  <record id="view_move_form_cust_ref_readonly" model="ir.ui.view">
+    <field name="name">account.move.form.readonly.cust</field>
+    <field name="model">account.move</field>
+    <field name="inherit_id" ref="crm_opportunity_sequence.account_move_form_inherit" />
+    <field name="groups_id" eval="[(6, 0, [ref('crm_opportunity_sequence.group_edit_access')  ])]" />
+    <field name="arch" type="xml">
+      <field name='opp_ref' position="attributes">
+        <attribute name="readonly">0</attribute>
+      </field>
+    </field>
+  </record>  
+
+</odoo>
