@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+
+  <record id="view_res_partner_filter_inh" model="ir.ui.view">
+    <field name="name">res.partner.select.inh</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_res_partner_filter" />
+    <field name="arch" type="xml">
+      <filter name='customer' position="replace">
+	<filter string="Customers" name="customer" domain="[('customer','=',1)]"/>
+      </filter>
+      <filter name='supplier' position="replace">
+	<filter string="Vendors" name="supplier" domain="[('supplier','=',1)]"/>
+      </filter>
+    </field>
+  </record>
+
+</odoo>

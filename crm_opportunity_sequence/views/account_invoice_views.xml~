@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+
+  <record id="account_invoice_form_inherit" model="ir.ui.view">
+    <field name="name">account.invoice.form.inherit</field>
+    <field name="model">account.invoice</field>
+    <field name="priority">2</field>
+    <field name="inherit_id" ref="account.invoice_form" />
+    <field name="arch" type="xml">
+      <field name="partner_id" position="after">
+	<field name="opp_ref" />
+      </field>
+    </field>
+  </record>
+
+  <record id="view_account_invoice_filter_inherited" model="ir.ui.view">
+    <field name="name">account.invoice.search.inherited</field>
+    <field name="model">account.invoice</field>
+    <field name="inherit_id" ref="account.view_account_invoice_filter" />
+    <field name="arch" type="xml">
+      <field name="number" position="after">
+	<field name="opp_ref" string="Opportunity Reference"
+	       filter_domain="[('opp_ref','ilike', self)]" />
+      </field>
+    </field>
+  </record>
+
+</odoo>
