@@ -5,44 +5,32 @@
   <record id="crm_case_form_view_oppor_inherit_for_sequence" model="ir.ui.view">
     <field name="name">Opportunities for sequence</field>
     <field name="model">crm.lead</field>
-    <field name="inherit_id" ref="sale_crm.crm_case_form_view_oppor"/>
+    <field name="inherit_id" ref="crm.crm_lead_view_form"/>
     <field name="arch" type="xml">
-      <xpath expr="//group[2]" position="after">
-	<h2><field name="number"/></h2>
+      <xpath expr="//field[@name='partner_id']" position="before">
+          <field name="number"/>
       </xpath>
       <xpath expr="//page[@name='lead']" position="before">
-	<page string="Tracking">
-	  <field name="tracking_ids" string="Tracking" nolabel="1" readonly="1">
-	    <tree string="Tracking">
-	      <field name="next_activity_id" />
-	      <field name="date_action" />
-	      <field name="title_action" />
-	    </tree>
-	  </field>
+        <page string="Tracking">
+          <field name="tracking_ids" string="Tracking" nolabel="1" readonly="1">
+            <tree string="Tracking">
+              <field name="next_activity_id" />
+              <field name="date_action" />
+              <field name="title_action" />
+            </tree>
+          </field>
 	</page>
       </xpath>
-    </field>
-  </record>
-
-  <record id="crm_case_form_view_oppor_inh_for_sale_crm" model="ir.ui.view">
-    <field name="name">Opportunities for sequence</field>
-    <field name="model">crm.lead</field>
-    <field name="inherit_id" ref="sale_crm.crm_case_form_view_oppor"/>
-    <field name="arch" type="xml">
-      <xpath expr="//button[@name='%(sale_crm.sale_action_quotations_new)d']" position="replace">
-	<button attrs="{'invisible': [('probability', '=', 0)]}" string="New Quotation" name="%(sale_crm.sale_action_quotations_new)d" type="action" class="oe_highlight"
+     <xpath expr="//button[@name='action_sale_quotations_new']" position="replace">
+	<button attrs="{'invisible': [('probability', '=', 0)]}" string="New Quotation" name="action_sale_quotations_new" type="object" class="oe_highlight"
 		context="{'search_default_partner_id': partner_id,
 			 'default_partner_id': partner_id,
 			 'default_team_id': team_id,
 			 'default_opp_ref': number}"/>
-			 <button attrs="{'invisible': [('probability', '>', 0)]}" string="New Quotation" name="%(sale_crm.sale_action_quotations_new)d" type="action"
-				 context="{'search_default_partner_id': partner_id,
-					  'default_partner_id': partner_id,
-					  'default_team_id': team_id,
-					  'default_opp_ref': number}"/>
       </xpath>
     </field>
   </record>
+
 
   <record id="view_crm_case_opportunities_filter_inherit" model="ir.ui.view">
     <field name="name">CRM - Opportunities Search Inherited</field>
@@ -61,9 +49,9 @@
     <field name="inherit_id" ref="crm.crm_case_kanban_view_leads"/>
     <field name="arch" type="xml">
       <div class="oe_kanban_content" position="inside">
-	<div>
-       	  <span style="color:blue"><field name="number"/></span>
-	</div>
+        <div>
+              <span style="color:blue"><field name="number"/></span>
+        </div>
       </div>
     </field>
   </record>
@@ -71,11 +59,11 @@
   <record id="view_lead_form_cust_ref_readonly" model="ir.ui.view">
     <field name="name">crm.lead.form.readonly.cust</field>
     <field name="model">crm.lead</field>
-    <field name="inherit_id" ref="crm_opportunity_sequence.crm_case_form_view_oppor_inherit_for_sequence" />
+    <field name="inherit_id" ref="crm_opportunity_sequence.crm_case_form_view_oppor_inherit_for_sequence"/>
     <field name="groups_id" eval="[(6, 0, [ref('crm_opportunity_sequence.group_edit_access') ])]" />
     <field name="arch" type="xml">
       <field name='number' position="attributes">
-	<attribute name="readonly">0</attribute>
+          <attribute name="readonly">0</attribute>
       </field>
     </field>
   </record>
